@@ -1,30 +1,39 @@
-# End-to-End Customer Data Ingestion Pipeline using SQL, Sqoop, HDFS, and Hive
+This project demonstrates a Big Data pipeline that imports data from MySQL into Hadoop HDFS using Sqoop and processes it in Hive using Avro format.
 
-This project demonstrates a Big Data data ingestion pipeline that transfers customer data from a relational SQL database to Hadoop HDFS using Sqoop and creates a Hive table using Avro schema.
+Technologies Used
+- MySQL
+- Apache Sqoop
+- Hadoop HDFS
+- Apache Hive
+- Avro
 
-## Step 1: SQL Source Table
+Pipeline Flow
 
-A source table named `customer_total` is created in MySQL to store customer log data.
+MySQL → Sqoop → HDFS → Hive
 
-The table contains fields such as:
+Steps
 
-- id
-- username
-- host
-- date_time
-- method
-- procedure
-- status_code
+1. Create MySQL database and tables.
+2. Insert sample data into customer_total.
+3. Move subset of data to customer_src table.
+4. Create Sqoop job to import data from MySQL to HDFS.
+5. Store data as Avro files.
+6. Upload AVSC schema to HDFS.
+7. Create Hive tables using AvroSerDe.
+8. Query the data in Hive.
 
-Sample customer records are inserted into the table to simulate real application log data.
+Project Structure
 
-The SQL script for table creation and data insertion is available in the **sql folder**.
+mysql/
+Contains SQL scripts for database and tables.
 
-## Technologies Used
+sqoop/
+Contains passfile and Sqoop job script.
 
-SQL  
-Apache Sqoop  
-Hadoop HDFS  
-Apache Hive  
-Avro  
-Linux
+hive/
+Contains Hive table creation scripts.
+
+Security Note
+
+Passwords are not stored in this repository.
+Replace the placeholder in passfile.txt with your local database password.
